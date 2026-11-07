@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Abbarna! 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #200b35, #6b245e, #bd568a);
+}
+
+.container {
+    padding: 35px 15px 60px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 55px);
+    color: #ffe4f5;
+    text-shadow: 0 0 15px #ff8ed0,
+                 0 0 30px #ff48ad;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff8ed0; }
+    to { text-shadow: 0 0 30px #ff48ad; }
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-size: 19px;
+    color: #ffe0f3;
+}
+
+.name {
+    color: #ffd0e8;
+    font-size: 35px;
+    margin: 15px;
+}
+
+.date {
+    color: #ffd6ed;
+    font-size: 16px;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    color: #fff4c7;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+.cake-area {
+    margin: 35px auto 20px;
+}
+
+.cake {
+    position: relative;
+    width: 180px;
+    height: 125px;
+    margin: 35px auto 15px;
+}
+
+.candle {
+    position: absolute;
+    width: 12px;
+    height: 45px;
+    background: repeating-linear-gradient(
+        45deg, #fff, #fff 5px, #ff75b9 5px, #ff75b9 10px
+    );
+    left: 84px;
+    top: -48px;
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+    width: 18px;
+    height: 25px;
+    background: #ffdb4d;
+    border-radius: 50% 50% 40% 40%;
+    left: -3px;
+    top: -25px;
+    box-shadow: 0 0 20px orange;
+    animation: flicker .4s infinite alternate;
+}
+
+@keyframes flicker {
+    from { transform: scale(1) rotate(-5deg); }
+    to { transform: scale(1.2) rotate(5deg); }
+}
+
+.layer {
+    position: absolute;
+    width: 180px;
+    height: 55px;
+    border-radius: 12px;
+    background: #ff85b9;
+    border-bottom: 7px solid #e94d91;
+}
+
+.layer.top {
+    top: 0;
+    background: #ffb3d4;
+    height: 40px;
+    z-index: 2;
+}
+
+.layer.middle {
+    top: 35px;
+    background: #ff78ad;
+}
+
+.layer.bottom {
+    top: 75px;
+    background: #f45a9c;
+    border-bottom: 8px solid #bd3476;
+}
+
+.cake-text {
+    position: relative;
+    top: 45px;
+    z-index: 3;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.blow-btn {
+    background: linear-gradient(45deg, #ff65ad, #ffb1d6);
+    border: none;
+    padding: 14px 25px;
+    color: white;
+    font-size: 17px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff8bc7;
+    margin: 15px;
+    transition: .3s;
+}
+
+.blow-btn:active {
+    transform: scale(.93);
+}
+
+.blow-btn:disabled {
+    opacity: .7;
+    cursor: default;
+}
+
+.message {
+    margin: 15px auto;
+    color: #ffe2f4;
+    font-size: 18px;
+    min-height: 28px;
+}
+
+.section-title {
+    margin: 40px 0 20px;
+    font-size: 25px;
+    color: #ffdaee;
+}
+
+.balloon-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 12px;
+    max-width: 450px;
+    margin: 25px auto;
+}
+
+.balloon {
+    width: 85px;
+    height: 105px;
+    border-radius: 50% 50% 45% 45%;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: inset -8px -8px 15px #0002,
+                0 0 15px #ffffff55;
+    animation: float 2.5s infinite ease-in-out;
+    transition: .3s;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    width: 1px;
+    height: 22px;
+    background: white;
+}
+
+.balloon:nth-child(2) { animation-delay: .4s; }
+.balloon:nth-child(3) { animation-delay: .8s; }
+.balloon:nth-child(4) { animation-delay: .2s; }
+.balloon:nth-child(5) { animation-delay: .6s; }
+.balloon:nth-child(6) { animation-delay: 1s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-13px); }
+}
+
+.balloon.popped {
+    animation: pop .3s forwards;
+    pointer-events: none;
+}
+
+@keyframes pop {
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.wish {
+    display: none;
+    grid-column: 1 / -1;
+    padding: 15px;
+    margin: 0 5px;
+    background: #ffffff20;
+    border: 1px solid #ffc3e4;
+    border-radius: 15px;
+    color: #fff1f8;
+    font-size: 17px;
+    animation: appear .5s;
+}
+
+.wish.show {
+    display: block;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.final {
+    margin: 50px auto 20px;
+    padding: 25px 15px;
+    border: 1px solid #ffc5e5;
+    border-radius: 20px;
+    max-width: 500px;
+    background: #ffffff15;
+    box-shadow: 0 0 20px #ff77bc55;
+}
+
+.final h2 {
+    color: #ffd1e9;
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: 35px;
+    font-size: 14px;
+    color: #ffd6ed;
+}
+
+/* Confetti */
+#confetti {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@media(max-width: 400px) {
+    .balloon-area { gap: 15px 5px; }
+    .balloon { width: 72px; height: 90px; }
+    .subtitle { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+    <h1>🎉 Happy Birthday 🎉</h1>
+
+    <div class="name">Abbarna 💗</div>
+
+    <p class="subtitle">
+        Today is all about YOU! ✨
+    </p>
+
+    <p class="date">🎂 21 January 2013 🎂</p>
+
+    <div class="cake-area">
+        <div class="cake" id="cake">
+            <div class="candle">
+                <div class="flame" id="flame"></div>
+            </div>
+            <div class="layer top"></div>
+            <div class="layer middle"></div>
+            <div class="layer bottom"></div>
+            <div class="cake-text">Happy Birthday!</div>
+        </div>
+
+        <p style="margin-top:30px;color:#ffe0f3">
+            Make a wish and blow your candles! 🕯️
+        </p>
+
+        <button class="blow-btn" id="blowBtn" onclick="blowCandles()">
+            🌬️ Blow the Candles
+        </button>
+
+        <div class="message" id="cakeMessage"></div>
+    </div>
+
+    <h2 class="section-title">
+        🎈 Six Balloons, Six Special Wishes 🎈
+    </h2>
+
+    <p style="color:#ffe2f3">
+        Tap each balloon to reveal a surprise! 💝
+    </p>
+
+    <div class="balloon-area">
+
+        <div class="balloon" style="background:#ff4f91"
+             onclick="popBalloon(this,0)">💗</div>
+        <div class="balloon" style="background:#9c65ff"
+             onclick="popBalloon(this,1)">💜</div>
+        <div class="balloon" style="background:#ffb52e"
+             onclick="popBalloon(this,2)">⭐</div>
+        <div class="balloon" style="background:#35c9d5"
+             onclick="popBalloon(this,3)">💙</div>
+        <div class="balloon" style="background:#ff729b"
+             onclick="popBalloon(this,4)">🌸</div>
+        <div class="balloon" style="background:#66cf83"
+             onclick="popBalloon(this,5)">💚</div>
+
+    </div>
+
+    <div class="final">
+        <h2>💖 A Special Message 💖</h2>
+        <p>
+            May your new year be filled with happiness,
+            beautiful memories, endless smiles and success.
+            Keep shining and keep being the wonderful person
+            you are! 🌷
+        </p>
+        <br>
+        <h2>Once Again, Happy Birthday Abbarna! 🎂</h2>
+        <p>With lots of wishes from Mukhil 🦋</p>
+    </div>
+
+    <footer>
+        Made with 💗 specially for Abbarna
+        <br><br>
+        ✨ Keep Smiling. Keep Shining. ✨
+    </footer>
+
+</div>
+
+<script>
+// Star decorations
+const stars = document.getElementById("stars");
+
+for(let i=0; i<35; i++) {
+    let star = document.createElement("span");
+    star.className = "star";
+    star.textContent = "✦";
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+    star.style.fontSize = (10+Math.random()*15)+"px";
+    star.style.animationDelay = Math.random()*2+"s";
+    stars.appendChild(star);
+}
+
+// Wishes
+const wishes = [
+    "No.1 💗 — Ur Favourite Person For Mukhil!",
+    "No.2 🌱 — Growing Step By Step!",
+    "No.3 😊 — Be Happy Till The End Of The Day!",
+    "No.4 🎉 — May This Day Belong To U!",
+    "No.5 🌸 — Ur Smile Is So Cute!",
+    "No.6 🦋 — Ur So Innocent And Caring Person For Mukhil!"
+];
+
+function popBalloon(balloon,index) {
+    if(balloon.classList.contains("popped")) return;
+
+    balloon.classList.add("popped");
+
+    const wish = document.createElement("div");
+    wish.className = "wish show";
+    wish.textContent = wishes[index];
+
+    balloon.parentElement.appendChild(wish);
+
+    confettiBurst();
+}
+
+// Blow candles
+function blowCandles() {
+    const flame = document.getElementById("flame");
+    const message = document.getElementById("cakeMessage");
+    const btn = document.getElementById("blowBtn");
+
+    if(flame.style.display === "none") return;
+
+    flame.style.display = "none";
+    btn.disabled = true;
+    btn.textContent = "💖 Candles Blown!";
+
+    message.textContent =
+        "Your wish is on its way! Happy Birthday Abbarna! 🎉";
+
+    confettiBurst();
+}
+
+// Confetti animation
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+let pieces = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function confettiBurst() {
+    for(let i=0; i<130; i++) {
+        pieces.push({
+            x: Math.random()*canvas.width,
+            y: -20,
+            size: Math.random()*8+4,
+            speed: Math.random()*5+2,
+            drift: Math.random()*4-2,
+            rotation: Math.random()*360,
+            color: ["#ff70b7","#ffe66d","#a98bff",
+                    "#70e1ff","#ffffff","#ff9c62"]
+                    [Math.floor(Math.random()*6)]
+        });
+    }
+}
+
+function animateConfetti() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    pieces.forEach((p) => {
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.rotation*Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+        ctx.restore();
+
+        p.y += p.speed;
+        p.x += p.drift;
+        p.rotation += 4;
+    });
+
+    pieces = pieces.filter(p => p.y < canvas.height+20);
+    requestAnimationFrame(animateConfetti);
+}
+
+animateConfetti();
+
+// Welcome confetti!
+setTimeout(confettiBurst,500);
+
+</script>
+
+</body>
+</html>
